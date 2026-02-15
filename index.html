@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashwat Shukla</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#FFFFFF',
+                        'secondary': 'rgba(255,255,255,0.80)',
+                        'tertiary': 'rgba(255,255,255,0.60)',
+                        'background': '#1B1B1B',
+                    },
+                    fontFamily: {
+                        'garamond': ['EB Garamond', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'EB Garamond', serif;
+            -webkit-font-smoothing: antialiased;
+            cursor: none;
+        }
+        .section-divider {
+            opacity: 0.15;
+            margin: 0 auto;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgba(147, 51, 234, 0.6);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, border-color 0.2s ease-out;
+            mix-blend-mode: difference;
+            box-shadow: 0 0 8px rgba(147, 51, 234, 0.3);
+        }
+
+        .cursor-trail {
+            width: 6px;
+            height: 6px;
+            background: rgba(147, 51, 234, 0.6);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.4);
+        }
+
+        a:hover ~ .cursor, button:hover ~ .cursor {
+            transform: scale(1.5);
+        }
+
+        /* Animated Jumping Words */
+        .jumping-words {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .jumping-word {
+            position: absolute;
+            font-family: 'EB Garamond', serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(147, 51, 234, 0.25);
+            white-space: nowrap;
+            animation: jump-across 7.6s linear infinite;
+        }
+
+        @keyframes jump-across {
+            0% {
+                left: -10%;
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-40px) rotate(4deg);
+            }
+            50% {
+                transform: translateY(0) rotate(-4deg);
+            }
+            75% {
+                transform: translateY(-25px) rotate(2deg);
+            }
+            100% {
+                left: 110%;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .jumping-word:nth-child(2) {
+            animation-delay: 0.95s;
+            animation-duration: 8.55s;
+        }
+
+        .jumping-word:nth-child(3) {
+            animation-delay: 1.9s;
+            animation-duration: 9.5s;
+        }
+
+        .jumping-word:nth-child(4) {
+            animation-delay: 2.85s;
+            animation-duration: 6.65s;
+        }
+
+        .jumping-word:nth-child(5) {
+            animation-delay: 3.8s;
+            animation-duration: 10.45s;
+        }
+
+        .jumping-word:nth-child(6) {
+            animation-delay: 1.42s;
+            animation-duration: 9.025s;
+        }
+
+        .jumping-word:nth-child(7) {
+            animation-delay: 2.37s;
+            animation-duration: 8.075s;
+        }
+
+        .jumping-word:nth-child(8) {
+            animation-delay: 3.32s;
+            animation-duration: 9.975s;
+        }
+
+        .jumping-word:nth-child(9) {
+            animation-delay: 0.47s;
+            animation-duration: 7.125s;
+        }
+
+        .jumping-word:nth-child(10) {
+            animation-delay: 4.27s;
+            animation-duration: 8.55s;
+        }
+
+        .jumping-word:nth-child(11) {
+            animation-delay: 1.2s;
+            animation-duration: 7.8s;
+        }
+
+        .jumping-word:nth-child(12) {
+            animation-delay: 2.1s;
+            animation-duration: 8.3s;
+        }
+
+        .jumping-word:nth-child(13) {
+            animation-delay: 3s;
+            animation-duration: 7.4s;
+        }
+
+        .jumping-word:nth-child(14) {
+            animation-delay: 0.8s;
+            animation-duration: 9.2s;
+        }
+
+        .jumping-word:nth-child(15) {
+            animation-delay: 3.6s;
+            animation-duration: 8.9s;
+        }
+
+        /* Monogram Interactive */
+        .monogram {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .monogram:hover {
+            transform: scale(1.05);
+        }
+
+        .monogram:active {
+            transform: scale(0.95);
+        }
+
+        .monogram:hover circle,
+        .monogram:hover line,
+        .monogram:hover path {
+            stroke: #FA3D1D !important;
+            transition: stroke 0.3s ease;
+        }
+
+        .monogram:active circle,
+        .monogram:active line,
+        .monogram:active path {
+            stroke: #FA3D1D !important;
+        }
+
+        .monogram:hover text {
+            fill: #FA3D1D !important;
+            transition: fill 0.3s ease;
+        }
+
+        .monogram:active text {
+            fill: #FA3D1D !important;
+        }
+
+        /* Jumping words fade transition */
+        .jumping-words {
+            transition: opacity 0.5s ease-out;
+        }
+
+        .jumping-words.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Cursor Speed Indicator */
+        .speed-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            font-family: 'EB Garamond', serif;
+            font-size: 11px;
+            color: rgba(147, 51, 234, 0.8);
+            background: rgba(27, 27, 27, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .speed-indicator.fast {
+            border-color: rgba(168, 85, 247, 0.6);
+            color: rgba(168, 85, 247, 1);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .speed-value {
+            font-weight: 600;
+            font-size: 13px;
+            color: rgba(147, 51, 234, 1);
+        }
+
+        .speed-indicator.fast .speed-value {
+            color: rgba(168, 85, 247, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-primary">
+
+    <!-- Cursor Speed Indicator -->
+    <div class="speed-indicator">
+        Speed: <span class="speed-value" id="speedValue">0</span> cm/s
+    </div>
+
+    <!-- Animated Jumping Words Background -->
+    <div class="jumping-words">
+        <div class="jumping-word" style="top: 8%;">Data Science</div>
+        <div class="jumping-word" style="top: 18%;">Machine Learning</div>
+        <div class="jumping-word" style="top: 28%;">ETL Pipelines</div>
+        <div class="jumping-word" style="top: 38%;">Financial Analytics</div>
+        <div class="jumping-word" style="top: 48%;">Python & SQL</div>
+        <div class="jumping-word" style="top: 58%;">Time Series</div>
+        <div class="jumping-word" style="top: 68%;">Data Modeling</div>
+        <div class="jumping-word" style="top: 78%;">Backtesting</div>
+        <div class="jumping-word" style="top: 88%;">Statistical Analysis</div>
+        <div class="jumping-word" style="top: 14%;">Pandas</div>
+        <div class="jumping-word" style="top: 24%;">scikit-learn</div>
+        <div class="jumping-word" style="top: 34%;">NumPy</div>
+        <div class="jumping-word" style="top: 44%;">Matplotlib</div>
+        <div class="jumping-word" style="top: 54%;">CNNs</div>
+        <div class="jumping-word" style="top: 64%;">Data Analytics</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-background/80 border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-8 py-6 flex justify-between items-center">
+            <div class="text-[11px] tracking-[0.12em] uppercase font-garamond text-white/90">Shashwat Shukla</div>
+            <div class="flex gap-8 text-[9px] tracking-[0.1em] uppercase font-garamond text-white/55">
+                <a href="#experience" class="hover:text-white/90 transition-colors duration-200">Experience</a>
+                <a href="#projects" class="hover:text-white/90 transition-colors duration-200">Projects</a>
+                <a href="#education" class="hover:text-white/90 transition-colors duration-200">Education</a>
+                <a href="#contact" class="hover:text-white/90 transition-colors duration-200">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-8 py-32">
+        <div class="text-center max-w-4xl">
+            <!-- Monogram -->
+            <div class="mb-12 inline-block monogram" id="monogram">
+                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="35" cy="35" r="33" stroke="white" stroke-width="0.35" fill="none" opacity="0.5"/>
+                    <circle cx="35" cy="35" r="28" stroke="white" stroke-width="0.35" fill="none" opacity="0.5"/>
+                    <circle cx="35" cy="35" r="23" stroke="white" stroke-width="0.35" fill="none" opacity="0.5"/>
+                    <circle cx="35" cy="35" r="18" stroke="white" stroke-width="0.35" fill="none" opacity="0.5"/>
+                    <g opacity="0.6">
+                        <path d="M35 23 L35 47 M23 35 L47 35" stroke="white" stroke-width="0.4"/>
+                        <circle cx="35" cy="35" r="5" stroke="white" stroke-width="0.4" fill="none"/>
+                        <text x="35" y="39" font-family="EB Garamond, serif" font-size="9" fill="white" text-anchor="middle" opacity="0.8">SS</text>
+                    </g>
+                </svg>
+            </div>
+
+            <h1 class="text-[64px] leading-[1.1] font-garamond text-primary mb-6">
+                Shashwat Shukla
+            </h1>
+
+            <p class="text-[14px] tracking-[0.2em] uppercase font-garamond text-white/60 mb-8">
+                Computer Science & Data Science
+            </p>
+
+            <!-- Social Links -->
+            <div class="flex gap-6 justify-center mb-12">
+                <a href="https://www.linkedin.com/in/shashwat-s-278b061a9/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 px-5 py-2 border border-white/10 rounded-full text-[9px] tracking-[0.14em] uppercase font-garamond text-white/60 hover:text-white/90 hover:border-white/30 transition-all duration-200">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Blazeeastt" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 px-5 py-2 border border-white/10 rounded-full text-[9px] tracking-[0.14em] uppercase font-garamond text-white/60 hover:text-white/90 hover:border-white/30 transition-all duration-200">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+
+            <p class="text-[22px] leading-[1.6] italic font-garamond text-white/85 max-w-3xl mx-auto mb-16">
+                Computer Science undergraduate specializing in Data Science with hands-on experience building scalable ETL pipelines, SQL-driven analytics, and time-series data systems in financial domains.
+            </p>
+
+            <div class="flex gap-4 justify-center">
+                <a href="#experience" class="px-[28px] py-[11px] border border-white/15 rounded-full text-[9.5px] tracking-[0.16em] uppercase font-garamond text-primary/85 hover:bg-white/10 hover:border-white/25 transition-all duration-200">
+                    View Experience
+                </a>
+                <a href="#contact" class="px-[28px] py-[11px] border border-white/15 rounded-full text-[9.5px] tracking-[0.16em] uppercase font-garamond text-primary/85 hover:bg-white/10 hover:border-white/25 transition-all duration-200">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-32 px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-[11px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-20 text-center">Experience</h2>
+
+            <!-- Experience Items -->
+            <div class="space-y-24">
+                <!-- Share India -->
+                <div class="border-l border-white/10 pl-8 hover:border-white/30 transition-colors duration-300">
+                    <div class="flex flex-wrap justify-between items-baseline mb-4">
+                        <h3 class="text-[26px] font-garamond text-primary">Data Analyst Intern</h3>
+                        <span class="text-[12px] italic font-garamond text-white/50">May – July 2025</span>
+                    </div>
+                    <p class="text-[14px] font-garamond text-white/70 mb-6">Share India (Algowire), Noida, India</p>
+                    <ul class="space-y-3 text-[16px] leading-[1.7] font-garamond text-white/75">
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Designed and deployed Python-based ETL pipelines to ingest, transform, and validate large-scale financial time-series datasets, supporting downstream analytics and data consumption.
+                        </li>
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Built modular data models and reusable analytics layers supporting feature engineering, backtesting millions of rows of data, and scheduled reporting workflows.
+                        </li>
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Wrote complex SQL queries to monitor datasets, validate schema integrity, and ensure data quality across pipelines. Optimized data workflows using caching, schema discipline, and unit-tested transformations.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Independent Trader -->
+                <div class="border-l border-white/10 pl-8 hover:border-white/30 transition-colors duration-300">
+                    <div class="flex flex-wrap justify-between items-baseline mb-4">
+                        <h3 class="text-[26px] font-garamond text-primary">Independent Derivatives Trader</h3>
+                        <span class="text-[12px] italic font-garamond text-white/50">2021 – Present</span>
+                    </div>
+                    <p class="text-[14px] font-garamond text-white/70 mb-6">Gurgaon and Bengaluru, India</p>
+                    <ul class="space-y-3 text-[16px] leading-[1.7] font-garamond text-white/75">
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Automated analytics workflows including volatility surface generation, walk-forward evaluations, and performance reporting.
+                        </li>
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Applied statistical analysis and time-series modelling to identify market regimes.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Innovesta -->
+                <div class="border-l border-white/10 pl-8 hover:border-white/30 transition-colors duration-300">
+                    <div class="flex flex-wrap justify-between items-baseline mb-4">
+                        <h3 class="text-[26px] font-garamond text-primary">President</h3>
+                        <span class="text-[12px] italic font-garamond text-white/50">October 2024 – Current</span>
+                    </div>
+                    <p class="text-[14px] font-garamond text-white/70 mb-6">Innovesta (The Finance Club at MIT, Bengaluru)</p>
+                    <ul class="space-y-3 text-[16px] leading-[1.7] font-garamond text-white/75">
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Led 8 flagship events (Stocks Decoded series, HTSAS, MYOB) for 1000+ attendees.
+                        </li>
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Delivered technical workshops on options mechanics and market analytics, improving participant satisfaction scores.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- SAMA Works -->
+                <div class="border-l border-white/10 pl-8 hover:border-white/30 transition-colors duration-300">
+                    <div class="flex flex-wrap justify-between items-baseline mb-4">
+                        <h3 class="text-[26px] font-garamond text-primary">Backend Intern</h3>
+                        <span class="text-[12px] italic font-garamond text-white/50">May – July 2024</span>
+                    </div>
+                    <p class="text-[14px] font-garamond text-white/70 mb-6">SAMA Works, HSR Layout, Bengaluru</p>
+                    <ul class="space-y-3 text-[16px] leading-[1.7] font-garamond text-white/75">
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Developed REST APIs and backend services using Node.js and MongoDB to serve structured datasets to internal tools.
+                        </li>
+                        <li class="pl-6 relative before:content-['◇'] before:absolute before:left-0 before:text-white/40">
+                            Designed data schemas and validated data integrity across services; tested endpoints using Postman and Insomnia.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-8 bg-white/[0.02]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-[11px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-20 text-center">Notable Projects</h2>
+
+            <div class="space-y-20">
+                <!-- Financial Topology Framework -->
+                <div class="group border-l border-white/10 pl-8 hover:border-purple-500/30 transition-colors duration-300">
+                    <h3 class="text-[32px] font-garamond text-primary mb-4 group-hover:text-white/90 transition-colors">
+                        Financial Topology Framework
+                    </h3>
+                    <p class="text-[16px] leading-[1.7] font-garamond text-white/70 mb-6">
+                        Built an end-to-end predictive analytics pipeline using Topological Data Analysis (Vietoris-Rips filtrations) on multi-dimensional correlation matrices to detect market anomalies and systemic risk patterns in financial time-series data.
+                    </p>
+                    <a href="https://github.com/Blazeeastt/CNN-Candlesticks" class="inline-block px-5 py-2 border border-purple-500/30 rounded-full text-[9px] tracking-[0.14em] uppercase font-garamond text-purple-400/80 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all duration-200">
+                        View Project →
+                    </a>
+                </div>
+
+                <!-- IBM IISc Quantum Hackathon -->
+                <div class="group border-l border-white/10 pl-8 hover:border-purple-500/30 transition-colors duration-300">
+                    <div class="mb-3">
+                        <span class="inline-block px-4 py-1 border border-purple-500/30 rounded-full text-[8px] tracking-[0.15em] uppercase font-garamond text-purple-400/70 mb-4">
+                            🏆 Winner — Ranked 1st among 32 teams
+                        </span>
+                    </div>
+                    <h3 class="text-[32px] font-garamond text-primary mb-4 group-hover:text-white/90 transition-colors">
+                        IBM IISc Quantum Hackathon 2025
+                    </h3>
+                    <p class="text-[16px] leading-[1.7] font-garamond text-white/70 mb-6">
+                        Winner — Ranked 1st among 32 teams for deriving the most efficient CSS decoding. Built Python run tests for quantum decoding simulations.
+                    </p>
+                    <a href="https://iisc-qiskit-fallfest2025.github.io/qff2025/" class="inline-block px-5 py-2 border border-purple-500/30 rounded-full text-[9px] tracking-[0.14em] uppercase font-garamond text-purple-400/80 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all duration-200">
+                        View Project →
+                    </a>
+                </div>
+
+                <!-- KDE Project -->
+                <div class="group border-l border-white/10 pl-8 hover:border-purple-500/30 transition-colors duration-300">
+                    <h3 class="text-[32px] font-garamond text-primary mb-4 group-hover:text-white/90 transition-colors">
+                        KDE-based Nifty 50 Liquidity Models
+                    </h3>
+                    <p class="text-[16px] leading-[1.7] font-garamond text-white/70 mb-6">
+                        Developed KDE-based unsupervised learning pipelines on high-frequency market data to identify liquidity regimes, regime transitions, and structural shifts, enabling scalable analytics and reproducible experimentation.
+                    </p>
+                    <a href="https://github.com/Blazeeastt/Kerndel-Density-Estimation" class="inline-block px-5 py-2 border border-purple-500/30 rounded-full text-[9px] tracking-[0.14em] uppercase font-garamond text-purple-400/80 hover:bg-purple-500/10 hover:border-purple-500/50 transition-all duration-200">
+                        View Project →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Skills -->
+    <section id="education" class="py-32 px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-[11px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-20 text-center">Education & Skills</h2>
+
+            <div class="grid md:grid-cols-2 gap-16 mb-20">
+                <!-- Education -->
+                <div>
+                    <h3 class="text-[10px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-8">Education</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-[22px] font-garamond text-primary mb-2">B.Tech Computer Science</h4>
+                            <p class="text-[14px] font-garamond text-white/70 mb-2">Manipal Institute of Technology</p>
+                            <p class="text-[13px] italic font-garamond text-white/60 mb-2">Specialization in Data Science</p>
+                            <p class="text-[12px] font-garamond text-white/50">July 2023 – Current</p>
+                        </div>
+                        <div>
+                            <h4 class="text-[22px] font-garamond text-primary mb-2">High School Diploma</h4>
+                            <p class="text-[14px] font-garamond text-white/70 mb-2">Glorious Public School, New Delhi</p>
+                            <p class="text-[12px] font-garamond text-white/50">May 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div>
+                    <h3 class="text-[10px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-8">Skills & Abilities</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-[13px] tracking-[0.08em] uppercase font-garamond text-white/70 mb-3">Data Engineering & Analytics</h4>
+                            <p class="text-[14px] leading-[1.7] font-garamond text-white/60">
+                                SQL, ETL Pipelines, Data Modelling, Data Warehousing, Time Series Analysis, Feature Engineering, Data Validation
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] tracking-[0.08em] uppercase font-garamond text-white/70 mb-3">Programming & Tools</h4>
+                            <p class="text-[14px] leading-[1.7] font-garamond text-white/60">
+                                Python, C++, NumPy, Pandas, scikit-learn, Git, Postman, MongoDB
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] tracking-[0.08em] uppercase font-garamond text-white/70 mb-3">Big Data & Systems</h4>
+                            <p class="text-[14px] leading-[1.7] font-garamond text-white/60">
+                                Distributed Systems, Hadoop, Caching Strategies, Schema Design
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[13px] tracking-[0.08em] uppercase font-garamond text-white/70 mb-3">Analytics & Modelling</h4>
+                            <p class="text-[14px] leading-[1.7] font-garamond text-white/60">
+                                Statistical Analysis, Predictive Modelling, Unsupervised Learning, KDE, Backtesting, Financial Analytics
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-8 bg-white/[0.02]">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-[11px] tracking-[0.15em] uppercase font-garamond text-white/50 mb-16">Get in Touch</h2>
+
+            <p class="text-[24px] leading-[1.6] italic font-garamond text-white/85 mb-12">
+                Let's build something remarkable together.
+            </p>
+
+            <div class="space-y-4 mb-12">
+                <a href="mailto:shashwatshukla120@gmail.com" class="block text-[18px] font-garamond text-white/75 hover:text-white transition-colors">
+                    shashwatshukla120@gmail.com
+                </a>
+                <p class="text-[16px] font-garamond text-white/60">
+                    Gurgaon, Haryana
+                </p>
+            </div>
+
+            <div class="flex gap-4 justify-center">
+                <a href="mailto:shashwatshukla120@gmail.com" class="px-[28px] py-[11px] border border-white/15 rounded-full text-[9.5px] tracking-[0.16em] uppercase font-garamond text-primary/85 hover:bg-white/10 hover:border-white/25 transition-all duration-200">
+                    Send Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-8 flex flex-col items-center">
+            <div class="flex gap-16 mb-8 opacity-25">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="white" stroke-width="0.5"/>
+                    <path d="M8 2 L8 14 M2 8 L14 8" stroke="white" stroke-width="0.5"/>
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 2 L10 6 L14 6 L11 9 L12 13 L8 10 L4 13 L5 9 L2 6 L6 6 Z" stroke="white" stroke-width="0.5" fill="none"/>
+                </svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 12 L8 4 L12 12" stroke="white" stroke-width="0.5" fill="none"/>
+                    <circle cx="8" cy="4" r="1" fill="white"/>
+                </svg>
+            </div>
+            <p class="text-[9px] tracking-[0.12em] uppercase font-garamond text-white/40">
+                © 2026 Shashwat Shukla
+            </p>
+        </div>
+    </footer>
+
+    <!-- Custom Cursor Trail -->
+    <div class="cursor"></div>
+
+    <script>
+        // Custom Cursor with Persistent Trail Effect
+        const cursor = document.querySelector('.cursor');
+        const trailPixels = [];
+        let mouseX = 0;
+        let mouseY = 0;
+        let lastTrailTime = 0;
+        const trailInterval = 15; // Create a new pixel every 15ms
+        const trailLifetime = 1000; // Trail pixels last for 1 second
+
+        // Cursor speed tracking
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let lastSpeedTime = Date.now();
+        let currentSpeed = 0;
+        const speedIndicator = document.querySelector('.speed-indicator');
+        const speedValue = document.getElementById('speedValue');
+
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Calculate speed
+            const currentTime = Date.now();
+            const timeDiff = (currentTime - lastSpeedTime) / 1000; // Convert to seconds
+
+            if (timeDiff > 0) {
+                const distanceX = mouseX - lastMouseX;
+                const distanceY = mouseY - lastMouseY;
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                // Convert pixels to centimeters (assuming 96 DPI: 1 cm ≈ 37.8 pixels)
+                const distanceInCm = distance / 37.8;
+                currentSpeed = (distanceInCm / timeDiff).toFixed(1);
+
+                // Update speed display
+                speedValue.textContent = currentSpeed;
+
+                // Add visual feedback for fast movement (>13 cm/s ≈ 500 px/s)
+                if (parseFloat(currentSpeed) > 13) {
+                    speedIndicator.classList.add('fast');
+                } else {
+                    speedIndicator.classList.remove('fast');
+                }
+
+                lastMouseX = mouseX;
+                lastMouseY = mouseY;
+                lastSpeedTime = currentTime;
+            }
+        });
+
+        // Animation loop
+        function animateCursor() {
+            const currentTime = Date.now();
+
+            // Update main cursor
+            cursor.style.left = mouseX - 6 + 'px';
+            cursor.style.top = mouseY - 6 + 'px';
+
+            // Create new trail pixel
+            if (currentTime - lastTrailTime > trailInterval) {
+                const pixel = document.createElement('div');
+                pixel.className = 'cursor-trail';
+                pixel.style.left = mouseX - 3 + 'px';
+                pixel.style.top = mouseY - 3 + 'px';
+                document.body.appendChild(pixel);
+
+                trailPixels.push({
+                    element: pixel,
+                    createdAt: currentTime
+                });
+
+                lastTrailTime = currentTime;
+            }
+
+            // Update and remove old trail pixels
+            for (let i = trailPixels.length - 1; i >= 0; i--) {
+                const pixel = trailPixels[i];
+                const age = currentTime - pixel.createdAt;
+
+                if (age > trailLifetime) {
+                    // Remove old pixel
+                    pixel.element.remove();
+                    trailPixels.splice(i, 1);
+                } else {
+                    // Fade out pixel based on age
+                    const opacity = 1 - (age / trailLifetime);
+                    pixel.element.style.opacity = opacity * 0.8;
+                    const scale = 1 - (age / trailLifetime) * 0.3;
+                    pixel.element.style.transform = `scale(${scale})`;
+                }
+            }
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // Scale cursor on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.8)';
+                cursor.style.borderColor = 'rgba(168, 85, 247, 0.9)';
+                cursor.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.6)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = 'rgba(147, 51, 234, 0.6)';
+                cursor.style.boxShadow = '0 0 8px rgba(147, 51, 234, 0.3)';
+            });
+        });
+
+        // Monogram click to toggle jumping words
+        const monogram = document.getElementById('monogram');
+        const jumpingWords = document.querySelector('.jumping-words');
+        let wordsVisible = true;
+
+        monogram.addEventListener('click', () => {
+            wordsVisible = !wordsVisible;
+            if (wordsVisible) {
+                jumpingWords.classList.remove('hidden');
+            } else {
+                jumpingWords.classList.add('hidden');
+            }
+        });
+
+        // Add hover effect for monogram cursor
+        monogram.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(2)';
+            cursor.style.borderColor = 'rgba(168, 85, 247, 0.9)';
+            cursor.style.boxShadow = '0 0 20px rgba(168, 85, 247, 0.8)';
+        });
+
+        monogram.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.borderColor = 'rgba(147, 51, 234, 0.6)';
+            cursor.style.boxShadow = '0 0 8px rgba(147, 51, 234, 0.3)';
+        });
+    </script>
+
+</body>
+</html>
